@@ -35,6 +35,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>Created By</th>
                                         <th>Views</th>
                                         <th>Action</th>
                                     </tr>
@@ -44,6 +45,7 @@
                                         <tr>
                                             <th>{{ $categories->firstItem() + $loop->index }}</th>
                                             <td>{{ $category->name }}</td>
+                                            <td>{{ $category->author }}</td>
                                             <td><span class="badge badge-soft-success">{{ $category->views }}</span></td>
                                             <td>
                                                 <div class="d-flex gap-2">

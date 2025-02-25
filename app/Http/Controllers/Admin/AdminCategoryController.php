@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller
@@ -37,9 +38,11 @@ class AdminCategoryController extends Controller
             'name' => 'required|unique:categories,name|max:100',
         ]);
 
+        $author = Auth::user()->name . ", " .Auth::user()->role;
 
         $category = new Category();
         $category->name = $request->name;
+        $category->author = $author;
         $category->slug = Str::slug($request->name);
         $category->save();
 
@@ -73,7 +76,10 @@ class AdminCategoryController extends Controller
             'name' => 'required|unique:categories,name,' . $category->id . '|max:100',
         ]);
 
+        $author = Auth::user()->name . ", " .Auth::user()->role;
+
         $category->name = $request->name;
+        $category->author = $author;
         $category->slug = Str::slug($request->name);
         $category->save();
 
