@@ -24,8 +24,11 @@ class AdminMiddleware
             return $next($request);
         }
 
-        if (Auth::user()->role === "user") {
-            // return redirect()->route('dashboard');
+        if (Auth::user()->role === "teacher") {
+            abort(403, "Access Denied");
+        }
+
+        if (Auth::user()->role === "student") {
             abort(403, "Access Denied");
         }
     }
